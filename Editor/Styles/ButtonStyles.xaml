@@ -1,0 +1,65 @@
+﻿<!--Button styles-->
+<ResourceDictionary x:Class="Editor.Styles.ButtonStyles"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Base Form-->
+    <Style TargetType="Window" x:Key="FormStyle">
+    </Style>
+    <!--FormActionButton-->
+    <Style TargetType="Button" x:Key="FormActionButton">
+        <!--Size-->
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <!--Colors-->
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <!--Border-->
+        <Setter Property="BorderThickness" Value="0"/>
+        <!--Padding-->
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    <!--Minimize Button-->
+    <Style TargetType="Button" BasedOn="{StaticResource FormActionButton}" x:Key="MinimizedButton">
+        <Setter Property="Button.Content">
+            <Setter.Value>
+                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="Minus"/>
+            </Setter.Value>
+        </Setter>
+        <EventSetter Event="Click" Handler="MinimizedForm"/>
+    </Style>
+    <!--FullScreen Button-->
+    <Style TargetType="Button" BasedOn="{StaticResource FormActionButton}" x:Key="FullScreenButton">
+        <Setter Property="Button.Content">
+            <Setter.Value>
+                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Style.Triggers>
+                                <!--When normal-->
+                                <DataTrigger Binding="{Binding ElementName=MainForm,Path=WindowState}" Value="Maximized">
+                                    <Setter Property="Kind" Value="FullscreenExit"/>
+                                </DataTrigger>
+                                <!--When maximized-->
+                                <DataTrigger Binding="{Binding ElementName=MainForm,Path=WindowState}" Value="Normal">
+                                    <Setter Property="Kind" Value="Fullscreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+            </Setter.Value>
+        </Setter>
+        <EventSetter Event="Click" Handler="FullScreen"/>
+    </Style>
+    <!--CLose Button-->
+    <Style TargetType="Button" BasedOn="{StaticResource FormActionButton}" x:Key="CloseButton">
+        <Setter Property="Button.Content">
+            <Setter.Value>
+                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" Kind="Close"/>
+            </Setter.Value>
+        </Setter>
+        <EventSetter Event="Click" Handler="CloseForm"/>
+    </Style>
+</ResourceDictionary>
