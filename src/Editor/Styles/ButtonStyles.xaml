@@ -38,11 +38,11 @@
                         <Style TargetType="materialDesign:PackIcon">
                             <Style.Triggers>
                                 <!--When normal-->
-                                <DataTrigger Binding="{Binding ElementName=MainForm,Path=WindowState}" Value="Maximized">
+                                <DataTrigger Binding="{Binding Source={x:Type Window},Path=WindowState}" Value="Maximized">
                                     <Setter Property="Kind" Value="FullscreenExit"/>
                                 </DataTrigger>
                                 <!--When maximized-->
-                                <DataTrigger Binding="{Binding ElementName=MainForm,Path=WindowState}" Value="Normal">
+                                <DataTrigger Binding="{Binding Source={x:Type Window},Path=WindowState}" Value="Normal">
                                     <Setter Property="Kind" Value="Fullscreen"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -51,7 +51,8 @@
                 </materialDesign:PackIcon>
             </Setter.Value>
         </Setter>
-        <EventSetter Event="Click" Handler="FullScreen"/>
+        <EventSetter Event="Click" Handler="FullScreen">
+        </EventSetter>
     </Style>
     <!--CLose Button-->
     <Style TargetType="Button" BasedOn="{StaticResource FormActionButton}" x:Key="CloseButton">
