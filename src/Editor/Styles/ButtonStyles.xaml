@@ -33,16 +33,16 @@
     <Style TargetType="Button" BasedOn="{StaticResource FormActionButton}" x:Key="FullScreenButton">
         <Setter Property="Button.Content">
             <Setter.Value>
-                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center">
+                <materialDesign:PackIcon VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="FullScreenButton">
                     <materialDesign:PackIcon.Style>
                         <Style TargetType="materialDesign:PackIcon">
                             <Style.Triggers>
                                 <!--When normal-->
-                                <DataTrigger Binding="{Binding Source={x:Type Window},Path=WindowState}" Value="Maximized">
+                                <DataTrigger Binding="{Binding Window.WindowState}" Value="Maximized">
                                     <Setter Property="Kind" Value="FullscreenExit"/>
                                 </DataTrigger>
                                 <!--When maximized-->
-                                <DataTrigger Binding="{Binding Source={x:Type Window},Path=WindowState}" Value="Normal">
+                                <DataTrigger Binding="{Binding Window.WindowState}" Value="Normal">
                                     <Setter Property="Kind" Value="Fullscreen"/>
                                 </DataTrigger>
                             </Style.Triggers>
